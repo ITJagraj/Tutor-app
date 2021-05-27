@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 3008;
 //middlewear
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(patah.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
 app.use(session(sesh));
 
 //use routes
