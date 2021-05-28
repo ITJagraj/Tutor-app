@@ -69,7 +69,7 @@ class User extends Model {
         allowNull: false,
         validate: {
           // this means the password must be at least four characters long
-          len: [8],
+          len: [8,15],
         }
       }
     },

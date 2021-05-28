@@ -16,7 +16,7 @@ Category.init(
         autoIncrement: true
       },
       // define a username column
-      tag_name: {
+      category_name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {

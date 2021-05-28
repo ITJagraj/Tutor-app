@@ -1,8 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-module.exports = Question;
-
 // define table columns and configuration
 Question.init(
     {
@@ -18,30 +16,64 @@ Question.init(
         autoIncrement: true
       },
        // define a username column
-       title: {
+       question_title: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             // this means the password must be at least four characters long
-            len: [1],
+            len: [7],
           }
       },
       // define a username column
-      tag_name: {
+      question_text: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
             // this means the password must be at least four characters long
-            len: [1],
+            len: [17],
           }
       },
-      //-----------------------------------need the question body
+      // define an id column
+      user_id: {
+        // use the special Sequelize DataTypes object provide what type of data it is
+        type: DataTypes.INTEGER,
+        // this is the equivalent of SQL's `NOT NULL` option
+        allowNull: false,
+        // instruct that this is the Primary Key
+        unique: true,
+        references: {
+            model: 'user',
+            key: 'id'
+        }
+      },// define an id column
+      category_id: {
+        // use the special Sequelize DataTypes object provide what type of data it is
+        type: DataTypes.INTEGER,
+        // this is the equivalent of SQL's `NOT NULL` option
+        allowNull: false,
+        references: {
+            model: 'category',
+            key: 'id'
+        }
+      },
+      answer_id: {
+        // use the special Sequelize DataTypes object provide what type of data it is
+        type: DataTypes.INTEGER,
+        // this is the equivalent of SQL's `NOT NULL` option
+        allowNull: false,
+        references: {
+            model: 'answer',
+            key: 'id'
+        }
+      },
     },
     {
       sequelize,
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'category'
+      modelName: 'question'
     }
   );
+
+  module.exports = Question;
