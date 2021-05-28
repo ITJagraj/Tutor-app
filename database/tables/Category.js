@@ -18,6 +18,7 @@ Category.init(
       // define a username column
       category_name: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
             // this means the password must be at least four characters long

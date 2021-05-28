@@ -21,7 +21,7 @@ Answer.init(
         allowNull: false,
         validate: {
             // this means the password must be at least four characters long
-            len: [17],
+            len: [7],
           }
       },
       // define an id column
