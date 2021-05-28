@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Question extends Model {}
+class CategoryQuestion extends Model {};
 
-// define table columns and configuration
-Question.init(
+    // define table columns and configuration
+CategoryQuestion.init(
     {
       // define an id column
       id: {
@@ -17,37 +17,6 @@ Question.init(
         // turn on auto increment
         autoIncrement: true
       },
-       // define a username column
-       question_title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            // this means the password must be at least four characters long
-            len: [7],
-          }
-      },
-      // define a username column
-      question_text: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            // this means the password must be at least four characters long
-            len: [7],
-          }
-      },
-      // define an id column
-      user_id: {
-        // use the special Sequelize DataTypes object provide what type of data it is
-        type: DataTypes.INTEGER,
-        // this is the equivalent of SQL's `NOT NULL` option
-        allowNull: false,
-        // instruct that this is the Primary Key
-        unique: true,
-        references: {
-            model: 'user',
-            key: 'id'
-        }
-      },// define an id column
       category_id: {
         // use the special Sequelize DataTypes object provide what type of data it is
         type: DataTypes.INTEGER,
@@ -58,13 +27,13 @@ Question.init(
             key: 'id'
         }
       },
-      answer_id: {
+      question_id: {
         // use the special Sequelize DataTypes object provide what type of data it is
         type: DataTypes.INTEGER,
         // this is the equivalent of SQL's `NOT NULL` option
         allowNull: false,
         references: {
-            model: 'answer',
+            model: 'question',
             key: 'id'
         }
       },
@@ -74,8 +43,9 @@ Question.init(
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'question'
+      modelName: 'category_question'
     }
   );
 
-  module.exports = Question;
+
+module.exports = CategoryQuestion;
