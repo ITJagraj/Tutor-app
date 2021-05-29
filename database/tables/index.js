@@ -15,13 +15,13 @@ Question.belongsTo(User, {
 
 Question.belongsToMany(Category, {
     through: CategoryQuestion,
-    as: 'category_question',
+    as: 'category_questions',
     foreignKey: 'question_id'
 });
 
 Category.belongsToMany(Question, {
     through: CategoryQuestion,
-    as: 'category_question',
+    as: 'question_categories',
     foreignKey: 'category_id'
 });
 

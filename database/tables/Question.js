@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../../config/connection');
 
 class Question extends Model {}
 
@@ -43,8 +43,9 @@ Question.init(
         allowNull: false,
         // instruct that this is the Primary Key
         unique: true,
+        // double check the unique 
         references: {
-            model: 'user',
+            model: 'user', 
             key: 'id'
         }
       },// define an id column
@@ -57,17 +58,17 @@ Question.init(
             model: 'category',
             key: 'id'
         }
-      },
-      answer_id: {
-        // use the special Sequelize DataTypes object provide what type of data it is
-        type: DataTypes.INTEGER,
-        // this is the equivalent of SQL's `NOT NULL` option
-        allowNull: false,
-        references: {
-            model: 'answer',
-            key: 'id'
-        }
-      },
+      }
+      // answer_id: {
+      //   // use the special Sequelize DataTypes object provide what type of data it is
+      //   type: DataTypes.INTEGER,
+      //   // this is the equivalent of SQL's `NOT NULL` option
+      //   allowNull: false,
+      //   references: {
+      //       model: 'answer',
+      //       key: 'id'
+      //   }
+      // },
     },
     {
       sequelize,

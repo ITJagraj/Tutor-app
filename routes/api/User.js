@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../../auth');
-const { User } = require('../../models');
+const { User } = require('../../database/tables');
 
 //GET /api/users/1
 router.get('/:id', withAuth, (req, res) => {
