@@ -39,28 +39,4 @@ router.post('/', withAuth, (req, res) => {
       });
 });
 
-//update categories on a question
-router.put('/', withAuth, (req, res) => {
-    Category.update({
-      category_name: req.body.category_name
-    })
-      .then(dbCategoryData => res.json(dbCategoryData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-});
-
-//delete categories on a question
-router.delete('/:id', withAuth, (req, res) => {
-    Category.destroy({
-      where: {
-          id: req.params.id
-      }
-    })
-      .then(dbCategoryData => res.json(dbCategoryData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-});
+//Only developers should be able to delete categories from the tutor app.
