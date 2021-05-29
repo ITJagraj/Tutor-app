@@ -1,6 +1,6 @@
 // import sequelize 
-const { Sequelize } = require("sequelize");
-const sequelize = require("sequelize");
+const Sequelize = require("sequelize");
+//const sequelize = require("sequelize");
 
 require ("dotenv").config(); //for loading env variables 
 
@@ -14,3 +14,5 @@ const sequelize = process.env.JAWSDB_URL
             decimalNumbers: true,
         },
     });
+
+module.exports = sequelize;

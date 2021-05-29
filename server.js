@@ -7,11 +7,12 @@ const routes = require("./routes");
 const exphbs = require("express-handlebars");
 //req session
 const session = require("express-session");
-const { Sequelize } = require("sequelize/types");
+const Sequelize  = require("./config/connection");
 //req sequelize
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sesh = {
+    secret: 'Super secret',
     cookie: {},
     resave: false,
     saveUninitialized: true,
@@ -36,6 +37,6 @@ app.use("/", routes);
 app.engine("handlebars", exphbs());
 app.set("view engine", "handlebars");
 
-Sequelize.afterSync({ force: false }).then(() => {
+Sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 });
