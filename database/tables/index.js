@@ -10,12 +10,13 @@ User.hasMany(Question, {
 });
 
 Question.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
 });
 
 Question.belongsToMany(Category, {
     through: CategoryQuestion,
-    as: 'category_questions',
+    as: 'question_categories',
     foreignKey: 'question_id'
 });
 
@@ -38,9 +39,8 @@ Question.hasMany(Answer, {
 });
 
 Answer.belongsTo(Question, {
-    foreignKey: 'question_id'
+    foreignKey: 'question_id',
+    onDelete: 'CASCADE'
 });
-
-
 
 module.exports = { User, Category, Question, Answer, Organization, CategoryQuestion };

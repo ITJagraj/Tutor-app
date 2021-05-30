@@ -32,10 +32,19 @@ Answer.init(
         type: DataTypes.INTEGER,
         // this is the equivalent of SQL's `NOT NULL` option
         allowNull: false,
-        // instruct that this is the Primary Key
-        unique: true,
         references: {
             model: 'user',
+            key: 'id'
+        }
+      },
+      // define an id column
+      question_id: {
+        // use the special Sequelize DataTypes object provide what type of data it is
+        type: DataTypes.INTEGER,
+        // this is the equivalent of SQL's `NOT NULL` option
+        allowNull: false,
+        references: {
+            model: 'question',
             key: 'id'
         }
       }

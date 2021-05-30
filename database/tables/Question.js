@@ -1,7 +1,31 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../../config/connection');
 
-class Question extends Model {}
+class Question extends Model {
+  //will display all the question's categories
+  static addCategories(body,model)
+  {
+    return model.CategoryQuestion.create({
+      question_id: body.question_id,
+      category_id: body.category_id
+    }).then(() => {
+      return Question.findOne({
+        where: {
+          id: body.question_id
+        },
+        attributes: [
+          'id',
+          "question_title",
+          "question_text",
+          "user_id",
+          'created_at',
+          [sequelize.literal('(SELECT DISTINCT(category_name) FROM category JOIN categoryquestion ON category.id = categoryquestion.category_id JOIN question ON question.id = categoryquestion.question_id'), 'question_categories']
+          //used to only display single categories from the question if there are duplicates
+        ]
+      });
+    });
+  }
+}
 
 // define table columns and configuration
 Question.init(
@@ -44,17 +68,6 @@ Question.init(
         // double check the unique 
         references: {
             model: 'user', 
-            key: 'id'
-        }
-      },// define an id column
-      category_id: {
-        // use the special Sequelize DataTypes object provide what type of data it is
-        type: DataTypes.INTEGER,
-        // this is the equivalent of SQL's `NOT NULL` option
-        allowNull: false,
-        unique: true,
-        references: {
-            model: 'category',
             key: 'id'
         }
       }

@@ -1,4 +1,4 @@
-const { User, Category, Question, Answer } = require('./tables/index');
+const { User, Category, Question, Answer, CategoryQuestion } = require('./tables/index');
 const sequelize = require('../config/connection');
 
 const userdata = [
@@ -19,25 +19,41 @@ const categorydata = [
     },
     {
         category_name: "Python"
-    }
+    },
+    {
+        category_name: "Ruby"
+    },
+    {
+        category_name: "Ruby"
+    },
 ];
 
 const questiondata = [
     {
         question_title: "How do i initialize a file?",
         question_text: "I do not know how to initialize a file to do algorithimic compares.",
-        user_id: "1",
-        category_id: ["2"],
-        category_id: ["3"]
+        user_id: 1
     }
 ];
 
 const answerdata = [
     {
         answer_text: "This is how you do it dumb dumb.",
-        user_id: "1",
+        user_id: 1,
+        question_id: 1
     }
 ];
+
+const questioncategorydata = [
+    {
+        question_id: 1,
+        category_id: 2
+    },
+    {
+        question_id: 1,
+        category_id: 3
+    }
+]
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
@@ -54,6 +70,9 @@ const seedAll = async () => {
   await Answer.bulkCreate(answerdata);
   console.log('--------------');
 
+  await CategoryQuestion.bulkCreate(questioncategorydata);
+  console.log('--------------');
+    
   process.exit(0);
 };
 
