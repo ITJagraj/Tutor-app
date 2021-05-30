@@ -1,20 +1,38 @@
 const router = require('express').Router();
-const session = require('express-session');
 const withAuth = require('../auth');
 const { User } = require('../../database/tables');
 
+//GET /api/users
+router.get('/', withAuth, (req, res) => {
+    if (req.session.user_id === req.params.id) {
+        User.findAll({
+            attributes: {
+                exclude: ['password']
+            }
+        })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No user found with this id' });
+                    return;
+                }
+                res.json(dbUserData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    }
+});
+
 //GET /api/users/1
 router.get('/:id', withAuth, (req, res) => {
-
     if (req.session.user_id === req.params.id) {
-
         User.findOne({
             where: {
                 id: req.params.id
             },
             attributes: {
                 exclude: ['password'],
-
             }
         })
             .then(dbUserData => {
@@ -31,32 +49,7 @@ router.get('/:id', withAuth, (req, res) => {
     }
 });
 
-// DELETE /api/users/1
-router.delete('/:id', withAuth, (req, res) => {
-
-    if (req.session.id === req.params.id) {
-
-        User.destroy({
-            where: {
-                id: req.params.id
-            }
-        })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this id' });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    }
-});
-
-
-//POST /api/user
+//POST /api/users
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
@@ -80,11 +73,9 @@ router.post('/', (req, res) => {
 });
 
 
-//PUT /api/user
-router.put('/:id', (req, res) => {
-
-    if (req.session.id === req.params.id) {
-
+//PUT /api/users/1
+router.put('/:id', withAuth, (req, res) => {
+    if (req.session.user_id === req.params.id) {
 
         User.update(req.body, {
             individualHooks: true,
@@ -100,12 +91,32 @@ router.put('/:id', (req, res) => {
                     res.status(404).json({ message: 'No user found with this id' });
                     return;
                 }
-
                 req.session.save(() => {
                     req.session.loggedIn = false;
-
                     res.json(dbUserData);
                 });
+                res.json(dbUserData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            });
+    }
+});
+
+// DELETE /api/users/1
+router.delete('/:id', withAuth, (req, res) => {
+    if (req.session.user_id === req.params.id) {
+        User.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+            .then(dbUserData => {
+                if (!dbUserData) {
+                    res.status(404).json({ message: 'No user found with this id' });
+                    return;
+                }
                 res.json(dbUserData);
             })
             .catch(err => {

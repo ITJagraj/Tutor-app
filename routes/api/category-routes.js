@@ -41,5 +41,17 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //Only developers should be able to delete categories from the tutor app.
+router.delete('/:id', withAuth, (req, res) => {
+  Category.destroy({
+   where: {
+     id: req.params.id
+   }
+  })
+    .then(dbCategoryData => res.json(dbCategoryData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
