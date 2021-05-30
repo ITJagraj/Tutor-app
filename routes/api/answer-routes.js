@@ -4,9 +4,7 @@ const {Answer} = require('../../database/tables');
 
 //gets all answers
 router.get('/', withAuth, (req, res) => {
-    Answer.findAll({
-      
-    })
+    Answer.findAll()
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
         console.log(err);

@@ -17,7 +17,6 @@ router.post('/', withAuth, (req, res) => {
         question_text: req.body.question_text,
         user_id: req.body.user_id,
         category_id: req.body.category_id,
-        // answer_id: req.body.answer_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
@@ -35,7 +34,6 @@ router.put('/:id', withAuth, (req, res) => {
         question_text: req.body.question_text,
         user_id: req.body.user_id,
         category_id: req.body.category_id,
-        // answer_id: req.body.answer_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
@@ -52,8 +50,7 @@ router.delete('/:id', withAuth, (req, res) => {
         question_title: req.body.question_title,
         question_text: req.body.question_text,
         user_id: req.body.user_id,
-        category_id: req.body.category_id,
-        // answer_id: req.body.answer_id
+        category_id: req.body.category_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
