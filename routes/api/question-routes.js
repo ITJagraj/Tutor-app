@@ -1,10 +1,9 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const { Question, Category, User } = require('../../database/tables');
+const { Question, Answer, User } = require('../../database/tables');
 
 //find all questions
 router.get('/', (req, res) => {
-    console.log("TTTTRRRRRIIIIAAAAALLLL");
     Question.findAll({
         
         attributes: [
@@ -34,19 +33,20 @@ router.get('/:id', (req, res) => {
     Question.findOne({
         attributes: [
             'id',
-          "question_title",
-          "question_text",
-          "user_id",
-          'created_at',
-          'updated_At'
-        ],
+            "question_title",
+            "question_text",
+            "user_id",
+            'created_at',
+            [sequelize.literal('(SELECT DISTINCT(category_name) FROM category JOIN categoryquestion ON category.id = categoryquestion.category_id JOIN question ON question.id = categoryquestion.question_id'), 'question_categories']
+            //used to only display single categories from the question if there are duplicates
+          ],
         include: [
             {
-                model: Category,
-                attributes: ['id','category_name'],
+                model: User,
+                attributes: ['id','username','first_name','last_name'],
             },
             {
-                model: User,
+                model: Answer,
                 attributes: ['id','username','first_name','last_name'],
             },
         ]
