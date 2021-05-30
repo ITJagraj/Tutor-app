@@ -3,26 +3,37 @@ const withAuth = require('../auth');
 const { User } = require('../../database/tables');
 
 //GET /api/users
-router.get('/', withAuth, (req, res) => {
-    if (req.session.user_id === req.params.id) {
-        User.findAll({
-            attributes: {
-                exclude: ['password']
-            }
-        })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this id' });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    }
-});
+// router.get('/', withAuth, (req, res) => {
+//     if (req.session.user_id === req.params.id) {
+//         User.findAll({
+//             attributes: {
+//                 exclude: ['password']
+//             }
+//         })
+//             .then(dbUserData => {
+//                 if (!dbUserData) {
+//                     res.status(404).json({ message: 'No user found with this id' });
+//                     return;
+//                 }
+//                 res.json(dbUserData);
+//             })
+//             .catch(err => {
+//                 console.log(err);
+//                 res.status(500).json(err);
+//             });
+//     }
+// });
+
+router.get('/', (req, res) => {
+    User.findAll({
+      attributes: { exclude: ['password'] }
+    })
+      .then(dbUserData => res.json(dbUserData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 //GET /api/users/1
 router.get('/:id', withAuth, (req, res) => {
@@ -61,7 +72,7 @@ router.post('/', (req, res) => {
             req.session.save(() => {
                 req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
-                req.session.loggedIn = true;
+                req.session.loggedIn = false;
 
                 res.json(dbUserData);
             });

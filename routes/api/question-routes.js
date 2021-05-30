@@ -4,6 +4,7 @@ const { Question, Category, User } = require('../../database/tables');
 
 //find all questions
 router.get('/', (req, res) => {
+    console.log("TTTTRRRRRIIIIAAAAALLLL");
     Question.findAll({
         attributes: [
             'id',

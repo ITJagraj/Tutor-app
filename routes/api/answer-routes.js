@@ -3,7 +3,7 @@ const withAuth = require('../auth');
 const {Answer} = require('../../database/tables');
 
 //gets all answers
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
     Answer.findAll()
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
