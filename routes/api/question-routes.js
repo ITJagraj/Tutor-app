@@ -6,22 +6,16 @@ const { Question, Category, User } = require('../../database/tables');
 router.get('/', (req, res) => {
     console.log("TTTTRRRRRIIIIAAAAALLLL");
     Question.findAll({
+        
         attributes: [
             'id',
           "question_title",
           "question_text",
           "user_id",
-          'created_at',
-          'updated_At'
+        //   'created_at',
+        //   'updated_At'
         ],
         include: [
-            {
-                model: Category,
-                attributes: ['id','category_name'],
-                include:{
-                    model: Category
-                }
-            },
             {
                 model: User,
                 attributes: ['id','username','first_name','last_name'],
