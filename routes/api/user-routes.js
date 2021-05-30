@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const session = require('express-session');
-const withAuth = require('../../auth');
+const withAuth = require('../auth');
 const { User } = require('../../database/tables');
 
 //GET /api/users/1
 router.get('/:id', withAuth, (req, res) => {
 
-    if (req.session.id === req.params.id) {
+    if (req.session.user_id === req.params.id) {
 
         User.findOne({
             where: {
@@ -30,8 +30,6 @@ router.get('/:id', withAuth, (req, res) => {
             });
     }
 });
-
-
 
 // DELETE /api/users/1
 router.delete('/:id', withAuth, (req, res) => {
@@ -58,8 +56,7 @@ router.delete('/:id', withAuth, (req, res) => {
 });
 
 
-//POST /api/user/1
-
+//POST /api/user
 router.post('/', (req, res) => {
     User.create({
         username: req.body.username,
@@ -69,7 +66,7 @@ router.post('/', (req, res) => {
     })
         .then(dbUserData => {
             req.session.save(() => {
-                req.session.id = dbUserData.id;
+                req.session.user_id = dbUserData.id;
                 req.session.username = dbUserData.username;
                 req.session.loggedIn = true;
 
@@ -84,7 +81,6 @@ router.post('/', (req, res) => {
 
 
 //PUT /api/user
-
 router.put('/:id', (req, res) => {
 
     if (req.session.id === req.params.id) {
@@ -118,10 +114,5 @@ router.put('/:id', (req, res) => {
             });
     }
 });
-
-
-
-
-
 
 module.exports = router;

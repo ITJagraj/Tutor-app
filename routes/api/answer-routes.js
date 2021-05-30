@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {Answer, Question} = require('../../database/tables');
+const withAuth = require('../auth');
+const {Answer} = require('../../database/tables');
 
 //gets all answers
 router.get('/', withAuth, (req, res) => {
@@ -42,3 +43,5 @@ router.delete('/:id', withAuth, (req, res) => {
         res.status(500).json(err);
       });
 });
+
+module.exports = router;

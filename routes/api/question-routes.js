@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const { Question, User, Answer, Category } = require('../../database/tables');
+const withAuth = require('../auth');
+const { Question } = require('../../database/tables');
 
 router.get('/', (req, res) => {
     Question.findAll()
@@ -10,7 +11,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     Question.create({
         question_title: req.body.question_title,
         question_text: req.body.question_text,
@@ -25,6 +26,40 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', withAuth, (req, res) => {
+    Question.update({
+        where: {
+            id: req.params.id
+        },
+        question_title: req.body.question_title,
+        question_text: req.body.question_text,
+        user_id: req.body.user_id,
+        category_id: req.body.category_id,
+        // answer_id: req.body.answer_id
+    })
+    .then(dbQuestionData => res.json(dbQuestionData))
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
 
+router.delete('/:id', withAuth, (req, res) => {
+    Question.destroy({
+        where: {
+            id: req.params.id
+        },
+        question_title: req.body.question_title,
+        question_text: req.body.question_text,
+        user_id: req.body.user_id,
+        category_id: req.body.category_id,
+        // answer_id: req.body.answer_id
+    })
+    .then(dbQuestionData => res.json(dbQuestionData))
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
 
 module.exports = router;

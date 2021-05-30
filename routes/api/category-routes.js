@@ -1,5 +1,6 @@
 const router = require('express').Router();
-const {Category, Question} = require('../../database/tables');
+const withAuth = require('../auth');
+const {Category} = require('../../database/tables');
 
 //gets all categories
 router.get('/', withAuth, (req, res) => {
@@ -40,3 +41,5 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //Only developers should be able to delete categories from the tutor app.
+
+module.exports = router;

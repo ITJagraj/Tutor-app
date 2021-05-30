@@ -1,14 +1,13 @@
-const express = require("express");
-// require path 
 const path = require("path");
-//require routes
-const routes = require("./routes");
-//require handlebars
-const exphbs = require("express-handlebars");
-//req session
+const express = require("express");
 const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./routes/index.js");
+
+const app = express();
+const PORT = process.env.PORT || 3008;
+
 const Sequelize  = require("./config/connection");
-//req sequelize
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sesh = {
@@ -20,22 +19,16 @@ const sesh = {
         db: Sequelize,
     }),
 };
-//initalizing the server
-const app = express();
-const PORT = process.env.PORT || 3008;
 
-//middlewear
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //app.use(express.static(path.join(__dirname, "public")));
 app.use(session(sesh));
 
-//use routes
-app.use("/", routes);
-
-//middlewear
-app.engine("handlebars", exphbs());
-app.set("view engine", "handlebars");
+app.use(routes);
 
 Sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
