@@ -30,6 +30,9 @@ router.get('/', (req, res) => {
 //find one question
 router.get('/:id', (req, res) => {
     Question.findOne({
+        where: {
+            id: req.params.id
+        },
         include: [
             { 
                 model: Category, as: "question_categories" 
