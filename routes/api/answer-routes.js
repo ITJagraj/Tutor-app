@@ -4,7 +4,9 @@ const {Answer} = require('../../database/tables');
 
 //gets all answers
 router.get('/', (req, res) => {
-    Answer.findAll()
+    Answer.findAll({
+      attributes: ['createdAt', 'updatedAt']
+    })
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
         console.log(err);
