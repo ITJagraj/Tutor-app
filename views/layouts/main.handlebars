@@ -16,8 +16,11 @@
       </h1>
       <nav>
         {{#if loggedIn}}
-        <a href="/dashboard">dashboard</a>
-        <button id="logout" class="btn-no-style">logout</button>
+        <div class="topnav search-form">
+          <input type="text" id="search-text" placeholder="Search..">
+          <button type="submit" id="search-id">Search</button>
+          <button id="logout" class="btn-no-style">logout</button>
+        </div>
         {{else}}
         <a href="/login">login</a>
         {{/if}}
@@ -33,6 +36,7 @@
   
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
+  <script src="/javascript/search.js"></script>
   {{/if}}
 </body>
 {{!-- <script src="/javascript/login.js" --}}

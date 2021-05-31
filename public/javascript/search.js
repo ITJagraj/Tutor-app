@@ -1,7 +1,7 @@
 async function searchFormHandler(event) {
     event.preventDefault();
 
-    const searchText= document.querySelector('#some-id-will-go-here').value.toUpperCase();
+    const searchText= document.querySelector('#search-text').value.toUpperCase();
 
     const miniSearch= new miniSearch({
         fields: ['question_title', 'question_text'],
@@ -20,7 +20,7 @@ async function searchFormHandler(event) {
     
     if (response.ok) {
         // ???? targeted location api
-        document.location.replace('/?????')
+        document.location.replace('/search')
     }
     else {
         // ???????????????????????/
@@ -29,4 +29,4 @@ async function searchFormHandler(event) {
 
 
 
-document.querySelector('.search-form').addEventListener('submit', searchFormHandler);
+document.querySelector('#search-id').addEventListener('click', searchFormHandler);
