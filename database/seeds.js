@@ -3,10 +3,16 @@ const sequelize = require('../config/connection');
 
 const userdata = [
     {
-    username: "DreJI95",
-    first_name: "Andre" ,
-    last_name: "Moseley" ,
-    password: "abcd1234" 
+        username: "DreJI95",
+        first_name: "Andre" ,
+        last_name: "Moseley" ,
+        password: "abcd1234" 
+    },
+    {
+        username: "DreKM85",
+        first_name: "Andrew" ,
+        last_name: "Moses" ,
+        password: "2d4b1a3c" 
     }
 ];
 
@@ -33,13 +39,23 @@ const questiondata = [
         question_title: "How do i initialize a file?",
         question_text: "I do not know how to initialize a file to do algorithimic compares.",
         user_id: 1
+    },
+    {
+        question_title: "How do i delete a file?",
+        question_text: "I do not know how to delete a file.",
+        user_id: 1
     }
 ];
 
 const answerdata = [
     {
-        answer_text: "This is how you do it dumb dumb.",
+        answer_text: "This is how you do it silly goose.",
         user_id: 1,
+        question_id: 1
+    },
+    {
+        answer_text: "This is why you don't it pupil.",
+        user_id: 2,
         question_id: 1
     }
 ];
@@ -51,6 +67,10 @@ const questioncategorydata = [
     },
     {
         question_id: 1,
+        category_id: 3
+    },
+    {
+        question_id: 2,
         category_id: 3
     }
 ]

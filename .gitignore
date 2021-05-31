@@ -5,3 +5,5 @@ package-lock.json
 desktop.ini
 ./desktop.ini
 .env
+./.env
+env

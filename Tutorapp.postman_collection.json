@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "6919b514-8999-434e-b465-b9b16c392b6a",
+		"name": "Tutorapp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addUsers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"SueLP95\",\r\n    \"first_name\": \"Sue\" ,\r\n    \"last_name\": \"Loop\" ,\r\n    \"password\": \"5643zyxv\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showUser",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"DreJI95\",\r\n    \"first_name\": \"Andre\" ,\r\n    \"last_name\": \"Moseley\" ,\r\n    \"password\": \"abcd1234\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"DreJI95\",\r\n    \"first_name\": \"Andre\" ,\r\n    \"last_name\": \"Moseley\" ,\r\n    \"password\": \"dcba4321\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"DreJI95\",\r\n    \"first_name\": \"Andre\" ,\r\n    \"last_name\": \"Moseley\" ,\r\n    \"password\": \"abc123\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showAllUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"DreJI95\",\r\n    \"first_name\": \"Andre\" ,\r\n    \"last_name\": \"Moseley\" ,\r\n    \"password\": \"abcd1234\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showCategories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category_name\": \"JavaScript\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showCategory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category_name\": \"JavaScript\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/categories/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"categories",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCategories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category_name\": \"Unix\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCategories",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"category_name\": \"C\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/categories/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"categories",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addQuestions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"question_title\": \"How do i add a file?\",\r\n        \"question_text\": \"You can try using get.\",\r\n        \"user_id\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showQuestions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/questions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showQuestion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/questions/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateQuestionInfo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"question_title\": \"How do i restore a file?\",\r\n        \"question_text\": \"You can try using renew.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/questions/1/UNIX",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"1",
+						"UNIX"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateQuestionCategoryInfo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/questions/1/Ruby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"1",
+						"Ruby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuestionCategoryInfo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/questions/1/Ruby",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"1",
+						"Ruby"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteQuestion",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/questions/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showAnswer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/answers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddAnswer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"answer_text\": \"This is how you fail until you pass.\",\r\n        \"user_id\": 2,\r\n        \"question_id\": 1\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3008/api/answers",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"answers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAnswer",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/answers/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"answers",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

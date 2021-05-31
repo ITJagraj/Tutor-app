@@ -1,19 +1,17 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const { Question, Category, User } = require('../../database/tables');
+const { Question, Answer, User,Category, CategoryQuestion } = require('../../database/tables');
 
 //find all questions
 router.get('/', (req, res) => {
-    console.log("TTTTRRRRRIIIIAAAAALLLL");
     Question.findAll({
-        
         attributes: [
             'id',
           "question_title",
           "question_text",
           "user_id",
-        //   'created_at',
-        //   'updated_At'
+          'createdAt',
+          'updatedAt'
         ],
         include: [
             {
@@ -32,25 +30,24 @@ router.get('/', (req, res) => {
 //find one question
 router.get('/:id', (req, res) => {
     Question.findOne({
-        attributes: [
-            'id',
-          "question_title",
-          "question_text",
-          "user_id",
-          'created_at',
-          'updated_At'
-        ],
         include: [
-            {
-                model: Category,
-                attributes: ['id','category_name'],
+            { 
+                model: Category, as: "question_categories" 
             },
             {
-                model: User,
-                attributes: ['id','username','first_name','last_name'],
+              model: User,
+              attributes: ['id','username','first_name','last_name'],
             },
+            {
+              model: Answer,
+              attributes: ['id','user_id','question_id','answer_text'],
+            }
         ]
-    })
+    },
+    {
+        where: {
+        id: req.params.id
+    }})
         .then(dbQuestionData => res.json(dbQuestionData))
         .catch(err => {
             console.log(err);
@@ -73,17 +70,64 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/:id', withAuth, (req, res) => {
-    Question.update({
-        where: {
-            id: req.params.id
+    Question.update(
+        { 
+            question_title: req.body.question_title,
+            question_text: req.body.question_text 
         },
-        question_title: req.body.question_title,
-        question_text: req.body.question_text
-    })
+        { 
+            where: {
+            id: req.params.id
+        }}
+    )
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
         console.log(err);
         res.status(400).json(err);
+    });
+});
+
+//update question category
+router.put('/:id/:category_name', withAuth, (req, res) => {
+    Category.findOne({
+            where: {
+                category_name: req.params.category_name
+            },
+          })
+    .then(dbCategoryData => {
+        CategoryQuestion.create({
+            question_id: req.params.id,
+            category_id: dbCategoryData.id
+          })
+    }).then(dbQuestionData => {
+        res.json(dbQuestionData)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+//delete question category
+router.delete('/:id/:category_name', withAuth, (req, res) => {
+    Category.findOne({
+        where: {
+            category_name: req.params.category_name
+        },
+      })
+    .then(dbCategoryData => {
+    CategoryQuestion.destroy({
+        where: {
+            question_id: req.params.id,
+            category_id: dbCategoryData.id
+        }
+      })
+    }).then(dbQuestionData => {
+        res.json(dbQuestionData)
+    })
+    .catch(err => {
+    console.log(err);
+    res.status(400).json(err);
     });
 });
 

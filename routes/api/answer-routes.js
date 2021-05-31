@@ -3,13 +3,16 @@ const withAuth = require('../auth');
 const {Answer} = require('../../database/tables');
 
 //gets all answers
-router.get('/', (req, res) => {
-    Answer.findAll()
+router.get('/:id', (req, res) => {
+    Answer.findAll({
+            where: {
+              question_id: req.params.id}
+            })
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
-      });
+});
 });
 
 //create answers on a question
