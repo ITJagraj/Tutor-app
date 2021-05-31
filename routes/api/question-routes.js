@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const { Question, Answer, User, CategoryQuestion } = require('../../database/tables');
+const { Question, Answer, User,Category, CategoryQuestion } = require('../../database/tables');
 
 //find all questions
 router.get('/', (req, res) => {
@@ -30,27 +30,24 @@ router.get('/', (req, res) => {
 //find one question
 router.get('/:id', (req, res) => {
     Question.findOne({
-        attributes: [
-            'id',
-            "question_title",
-            "question_text",
-            "user_id",
-            [sequelize.literal('(SELECT DISTINCT(category_name) FROM category JOIN categoryquestion ON category.id = categoryquestion.category_id JOIN question ON question.id = categoryquestion.question_id'), 'question_categories'],
-            'createdAt',
-            'updatedAt'
-            //used to only display single categories from the question if there are duplicates
-          ],
         include: [
-            {
-                model: User,
-                attributes: ['id','username','first_name','last_name'],
+            { 
+                model: Category, as: "question_categories" 
             },
             {
-                model: Answer,
-                attributes: ['id','user_id','question_id','answer_text'],
+              model: User,
+              attributes: ['id','username','first_name','last_name'],
             },
+            {
+              model: Answer,
+              attributes: ['id','user_id','question_id','answer_text'],
+            }
         ]
-    })
+    },
+    {
+        where: {
+        id: req.params.id
+    }})
         .then(dbQuestionData => res.json(dbQuestionData))
         .catch(err => {
             console.log(err);
@@ -73,13 +70,16 @@ router.post('/', withAuth, (req, res) => {
 });
 
 router.put('/:id', withAuth, (req, res) => {
-    Question.update({
-        where: {
-            id: req.params.id
+    Question.update(
+        { 
+            question_title: req.body.question_title,
+            question_text: req.body.question_text 
         },
-        question_title: req.body.question_title,
-        question_text: req.body.question_text
-    })
+        { 
+            where: {
+            id: req.params.id
+        }}
+    )
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
         console.log(err);
@@ -89,19 +89,17 @@ router.put('/:id', withAuth, (req, res) => {
 
 //update question category
 router.put('/:id/:category_name', withAuth, (req, res) => {
-    Question.get({
-        where: {
-            id: req.params.id
-        },
-        attributes: [[sequelize.literal(`SELECT MIN(id) FROM category JOIN WHERE category_name = ${req.params.category_name} GROUP BY category_name`, 'question_category')]]
-    })
-    .then(dbQuestionData => {
-        CategoryQuestion.create({
-            question_id: dbQuestionData.question_id,
-            category_id: dbQuestionData.question_category
+    Category.findOne({
+            where: {
+                category_name: req.params.category_name
+            },
           })
-        } 
-    ).then(dbQuestionData => {
+    .then(dbCategoryData => {
+        CategoryQuestion.create({
+            question_id: req.params.id,
+            category_id: dbCategoryData.id
+          })
+    }).then(dbQuestionData => {
         res.json(dbQuestionData)
     })
     .catch(err => {
@@ -112,25 +110,24 @@ router.put('/:id/:category_name', withAuth, (req, res) => {
 
 //delete question category
 router.delete('/:id/:category_name', withAuth, (req, res) => {
-    Question.get({
+    Category.findOne({
         where: {
-            id: req.params.id
+            category_name: req.params.category_name
         },
-        attributes: [[sequelize.literal(`SELECT MIN(id) FROM category JOIN WHERE category_name = ${req.params.category_name} GROUP BY category_name`, 'question_category')]]
-    })
-    .then(dbQuestionData => {
-        CategoryQuestion.destroy({
-            where: {
-                question_id = dbQuestionData.question_id,
-                category_id = dbQuestionData.question_category}
-          })
-        } 
-    ).then(dbQuestionData => {
+      })
+    .then(dbCategoryData => {
+    CategoryQuestion.destroy({
+        where: {
+            question_id: req.params.id,
+            category_id: dbCategoryData.id
+        }
+      })
+    }).then(dbQuestionData => {
         res.json(dbQuestionData)
     })
     .catch(err => {
-        console.log(err);
-        res.status(400).json(err);
+    console.log(err);
+    res.status(400).json(err);
     });
 });
 

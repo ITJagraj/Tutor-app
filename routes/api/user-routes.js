@@ -2,7 +2,7 @@ const router = require('express').Router();
 const withAuth = require('../auth');
 const { User } = require('../../database/tables');
 
-GET /api/users
+//GET /api/users
 router.get('/', withAuth, (req, res) => {
     if (req.session.user_id === req.params.id) {
         User.findAll({
@@ -25,18 +25,6 @@ router.get('/', withAuth, (req, res) => {
             });
     }
 });
-
-//test run
-// router.get('/', (req, res) => {
-//     User.findAll({
-//       attributes: { exclude: ['password'] }
-//     })
-//       .then(dbUserData => res.json(dbUserData))
-//       .catch(err => {
-//         console.log(err);
-//         res.status(500).json(err);
-//       });
-//   });
 
 //GET /api/users/1
 router.get('/:id', withAuth, (req, res) => {
@@ -121,6 +109,16 @@ router.post('/login', (req, res) => {
         });
 });
 
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+    else {
+      res.status(404).end();
+    }
+  });
 
 //PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
