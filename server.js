@@ -4,6 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./routes/");
 const helpers= require('./utils/helpers');
+const miniSearch= require('minisearch')
 
 const app = express();
 const PORT = process.env.PORT || 3008;
@@ -20,6 +21,8 @@ const sesh = {
         db: Sequelize,
     }),
 };
+
+
 
 const hbs= exphbs.create({helpers});
 

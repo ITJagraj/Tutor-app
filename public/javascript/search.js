@@ -1,12 +1,15 @@
+
+
 async function searchFormHandler(event) {
     event.preventDefault();
 
+    // const miniSearch= require('minisearch');
     const searchText= document.querySelector('#search-text').value.toUpperCase();
 
-    const miniSearch= new miniSearch({
+    let miniSearch= new MiniSearch({
         fields: ['question_title', 'question_text'],
         storedFields: ['question_title', 'question_text']
-    })
+    });
 
     miniSearch.addAll(questiondata)
 
@@ -17,7 +20,7 @@ async function searchFormHandler(event) {
         body: JSON.stringify({results}),
         headers: {'Content-Type': 'application/json'}
     });
-    
+
     if (response.ok) {
         // ???? targeted location api
         document.location.replace('/search')
@@ -29,4 +32,6 @@ async function searchFormHandler(event) {
 
 
 
-document.querySelector('#search-id').addEventListener('click', searchFormHandler);
+
+
+document.querySelector('#search-form').addEventListener('click', searchFormHandler);
