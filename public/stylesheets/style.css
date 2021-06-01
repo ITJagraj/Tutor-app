@@ -6,7 +6,27 @@
 	--secondary: #197d0f;
 	--tertiary: #333
   }
-  
+ /* all in nav bar*/ 
+#main-nav-bar {
+	
+}
+
+#tutor-title {
+
+}
+#search-text {
+
+}
+#logout {
+
+}
+#login {
+
+}
+
+
+
+
   body, html {
 	height: 100%;
 	padding: 0;
