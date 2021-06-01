@@ -60,7 +60,7 @@ router.get('/:id', (req, res) => {
 });
 
 //find a question by text
-router.get('/search/:qt', /*withAuth,*/ (req, res) => {
+router.get('/search/:qt', withAuth, (req, res) => {
     Question.findAll({   
         where: {
                 question_title: { [Op.like]: `%${req.params.qt}%`}
@@ -87,7 +87,7 @@ router.get('/search/:qt', /*withAuth,*/ (req, res) => {
 });
 
 //find a question by category name
-router.get('/search-category/:cn', /*withAuth,*/ (req, res) => {
+router.get('/search-category/:cn', withAuth, (req, res) => {
     Category.findOne({   
         where: {
                 category_name: { [Op.like]: `%${req.params.cn}%`}
