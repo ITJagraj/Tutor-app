@@ -16,20 +16,21 @@
 <body>
 
   <div class="wrapper">
-    <header id="main-nav-bar" class="navbar navbar-dark bg-dark">
+    <header id="entire-top" class="navbar navbar-dark bg-dark">
       <h1>
         <a id="tutor-title" href="/">Tutor App</a>
       </h1>
       <nav>
         {{#if loggedIn}}
-        <div class="topnav search-form">
+        <div class="search-bar-right">
+          <a id="post-id" href="/post">Post</a>
+          <button id="logout" class="btn-no-style">Logout</button>
           <input type="text" id="search-text" placeholder="Search..">
           <button type="submit" id="search-id">Search</button>
-          <button id="logout" class="btn-no-style">logout</button>
-          <a href="/post">Post</a>
+         
         </div>
         {{else}}
-        <a id="login" href="/login">login</a>
+        <a id="login" href="/login">Login</a>
         {{/if}}
       </nav>
     </header>

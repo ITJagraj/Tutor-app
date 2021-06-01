@@ -2,29 +2,58 @@
 	box-sizing: border-box;
   }
   :root {
-	--primary: #01408d;
+	--primary: #6092cf;
 	--secondary: #197d0f;
 	--tertiary: #333
   }
  /* all in nav bar*/ 
-#main-nav-bar {
+
+#entire-top {
+	border-radius: 8px;
+}
+#tutor-title {
+	font-family: sans-serif;
+	color: var(--primary);
+	font-size: 20px;
+	font-weight: bold;
 	
 }
-
-#tutor-title {
-
+#post-id {
+	font-family: sans-serif;
+	color: var(--primary);
+	font-size: 16px;
+	
+	padding-right: 10px;
+	margin-top: 4px;
 }
 #search-text {
-
+	padding-right:10px;
 }
 #logout {
-
+	color: var(--primary);
+	padding-right: 10px;
+	font-weight: normal;
 }
 #login {
-
+	color: var(--primary);
 }
-
-
+a {
+	text-decoration: none;
+	color: var(--primary);
+	
+	transition: color .1s;
+  }
+.search-bar-right {
+	display: flex;
+	justify-content: space-evenly;
+	
+}
+#search-id {
+	margin-right: 0px;
+	margin-left: 0px;
+	background: var(--primary);
+	padding-right: 10px;
+}
 
 
   body, html {
@@ -35,12 +64,7 @@
 	color: rgb(20, 20, 20);
   }
   
-  a {
-	text-decoration: none;
-	color: #01408d;
-	font-weight: bold;
-	transition: color .1s;
-  }
+
   
   a:hover {
 	color: #3486eb;
@@ -122,16 +146,16 @@
 	padding: 0;
 	cursor: pointer;
 	text-decoration: none;
-	color: #225ca3;
+	color: var(--primary);
 	font-size: 100%;
 	font-weight: bold;
 	transition: color .1s;
-	margin-left: 16px;
+	margin-left: 10px;
   }
   
   .btn-no-style:hover {
 	background: none;
-	color: #3486eb;
+	color: #d0e5ff;
   }
   
   .delete-post-btn {
