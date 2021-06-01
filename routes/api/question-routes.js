@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
 const { Question, Answer, User,Category, CategoryQuestion } = require('../../database/tables');
+const { Op } = require('sequelize');
 
 //find all questions
 router.get('/', (req, res) => {
@@ -53,6 +54,46 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+//find a question by category name
+router.get('/category/:category_name', /*withAuth,*/ (req, res) => {
+    Category.findOne({
+            where: {
+                category_name: { [Op.like]: `%${req.params.category_name }%`}
+            },
+          })
+    .then(dbCategoryData => {
+        let categoryId = res.json(dbCategoryData);
+        CategoryQuestion.findAll({
+        //     include: [{
+        //                     model: Question,
+        //                     attributes: [
+        //                         'id',
+        //                     "question_title",
+        //                     "question_text",
+        //                     "user_id",
+        //                     'createdAt',
+        //                     'updatedAt',
+        //                     { include: [
+        //                         {
+        //                             model: User,
+        //                             attributes: ['id','username','first_name','last_name'],
+        //                         }, ]},
+        //                      ],
+        // }]
+        },
+        {
+            where:
+            { category_id: categoryId.id }
+        })
+    }).then(dbQuestionData => {
+        res.json(dbQuestionData)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
 });
 
 router.post('/', withAuth, (req, res) => {
