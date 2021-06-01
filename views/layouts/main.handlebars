@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tutor App</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   <link rel="stylesheet" href="/stylesheets/style.css">
+  
 </head>
 
 <body>
+
   <div class="wrapper">
     <header>
       <h1>
@@ -20,7 +24,7 @@
           <input type="text" id="search-text" placeholder="Search..">
           <button type="submit" id="search-id">Search</button>
           <button id="logout" class="btn-no-style">logout</button>
-          
+          <a href="/post">Post</a>
         </div>
         {{else}}
         <a href="/login">login</a>
@@ -38,7 +42,9 @@
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
   <script src="/javascript/search.js"></script>
+  
   {{/if}}
+
 </body>
 {{!-- <script src="/javascript/login.js" --}}
 </html>
