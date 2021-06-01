@@ -59,38 +59,55 @@ router.get('/:id', (req, res) => {
         });
 });
 
-//find a question by category name
-router.get('/category/:category_name', /*withAuth,*/ (req, res) => {
-    Category.findOne({
-            where: {
-                category_name: { [Op.like]: `%${req.params.category_name }%`}
+//find a question by text
+router.get('/search/:qt', /*withAuth,*/ (req, res) => {
+    Question.findAll({   
+        where: {
+                question_title: { [Op.like]: `%${req.params.qt}%`}
+                },
+        include: [
+            { 
+                model: Category, as: "question_categories" 
             },
-          })
-    .then(dbCategoryData => {
-        let categoryId = res.json(dbCategoryData);
-        CategoryQuestion.findAll({
-        //     include: [{
-        //                     model: Question,
-        //                     attributes: [
-        //                         'id',
-        //                     "question_title",
-        //                     "question_text",
-        //                     "user_id",
-        //                     'createdAt',
-        //                     'updatedAt',
-        //                     { include: [
-        //                         {
-        //                             model: User,
-        //                             attributes: ['id','username','first_name','last_name'],
-        //                         }, ]},
-        //                      ],
-        // }]
-        },
-        {
-            where:
-            { category_id: categoryId.id }
-        })
-    }).then(dbQuestionData => {
+            {
+              model: User,
+              attributes: ['id','username','first_name','last_name'],
+            },
+            {
+              model: Answer,
+              attributes: ['id','user_id','question_id','answer_text'],
+            }]}
+    ).then(dbQuestionData => {
+        res.json(dbQuestionData)
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+//find a question by category name
+router.get('/search-category/:cn', /*withAuth,*/ (req, res) => {
+    Category.findOne({   
+        where: {
+                category_name: { [Op.like]: `%${req.params.cn}%`}
+                },
+        include: [
+            { 
+                model: Question, as: "question_categories",
+                include: [
+                    {
+                        model: User,
+                        attributes: ['id','username','first_name','last_name'],
+                      },
+                      {
+                        model: Answer,
+                        attributes: ['id','user_id','question_id','answer_text'],
+                      }
+                ]
+            },
+            ]}
+    ).then(dbQuestionData => {
         res.json(dbQuestionData)
     })
     .catch(err => {
