@@ -126,6 +126,7 @@ router.post('/', withAuth, (req, res) => {
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
         console.log(err);
+        console.log("question-route file error")
         res.status(400).json(err);
     });
 });

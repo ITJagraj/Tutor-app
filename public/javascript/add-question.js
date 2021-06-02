@@ -1,17 +1,17 @@
 async function newFormHandler(event) {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="post-title"]').value;
-  const post_summary = document.querySelector('input[name="post-summary"]').value;
+  const question_title = document.querySelector('input[name="post-title"]').value;
+  const question_text = document.querySelector('input[name="post-summary"]').value;
 
-  const post_category = document.querySelector(' input[name="post-category"]').value;
+  const category_name = document.querySelector(' input[name="post-category"]').value;
 
   const response = await fetch(`/api/questions`, {
     method: 'POST',
     body: JSON.stringify({
-      title,
-      post_summary,
-      post_category//might have to change if no longer aplicable 
+      question_title,
+      question_text,
+      category_name 
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -25,4 +25,7 @@ async function newFormHandler(event) {
   }
 }
 
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+var el = document.querySelector('.new-post-form');
+if(el){
+  addEventListener('submit', newFormHandler);
+}
