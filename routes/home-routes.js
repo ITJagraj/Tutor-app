@@ -6,9 +6,7 @@ const { Question, Answer, User,Category, CategoryQuestion } = require('../databa
 router.get('/login', (req, res) => {
     res.render('login');
 });
-
 router.get('/post', (req, res) => {
-    req.session.loggedIn = true;
     res.render('dashboard');
 });
 router.get('/', (req, res) => {

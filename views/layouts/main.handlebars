@@ -20,22 +20,20 @@
   <div class="wrapper">
     <header id="entire-top" class="navbar navbar-dark bg-dark">
       <h1>
-        <a id="tutor-title" href="/homepage">Tutor App</a>
+        <a id="tutor-title" href="/">Tutor App</a>
       </h1>
       <nav>
-        
         {{#if loggedIn}}
         <div class="search-bar-right">
           <a id="post-id" href="/post">Post</a>
           <button id="logout" class="btn-no-style">Logout</button>
           <input type="text" id="search-text" placeholder="Search..">
           <button type="submit" id="search-id">Search</button>
-        {{else}}
-          <a id="login" href="/login">Login</a>
+         
         </div>
-        {{/if}} 
-        
-        
+        {{else}}
+        <a id="login" href="/login">Login</a>
+        {{/if}}
       </nav>
     </header>
     <main>
@@ -50,10 +48,9 @@
   <script src="/javascript/logout.js"></script>
   <script src="/javascript/search.js"></script>
   <script src="/javascript/add-question.js"></script>
-  {{else}}
-  <script src="/javascript/login.js"></script>
+  
   {{/if}}
 
 </body>
-
+{{!-- <script src="/javascript/login.js" --}}
 </html>

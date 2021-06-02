@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
 const { Question, Answer, User,Category, CategoryQuestion } = require('../../database/tables');
-const { Op } = require('sequelize');
 
 //find all questions
 router.get('/', (req, res) => {
@@ -57,63 +56,6 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-});
-
-//find a question by text
-router.get('/search/:qt', withAuth, (req, res) => {
-    Question.findAll({   
-        where: {
-                question_title: { [Op.like]: `%${req.params.qt}%`}
-                },
-        include: [
-            { 
-                model: Category, as: "question_categories" 
-            },
-            {
-              model: User,
-              attributes: ['id','username','first_name','last_name'],
-            },
-            {
-              model: Answer,
-              attributes: ['id','user_id','question_id','answer_text'],
-            }]}
-    ).then(dbQuestionData => {
-        res.json(dbQuestionData)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(400).json(err);
-    });
-});
-
-//find a question by category name
-router.get('/search-category/:cn', withAuth, (req, res) => {
-    Category.findOne({   
-        where: {
-                category_name: { [Op.like]: `%${req.params.cn}%`}
-                },
-        include: [
-            { 
-                model: Question, as: "question_categories",
-                include: [
-                    {
-                        model: User,
-                        attributes: ['id','username','first_name','last_name'],
-                      },
-                      {
-                        model: Answer,
-                        attributes: ['id','user_id','question_id','answer_text'],
-                      }
-                ]
-            },
-            ]}
-    ).then(dbQuestionData => {
-        res.json(dbQuestionData)
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(400).json(err);
-    });
 });
 
 router.post('/', withAuth, (req, res) => {
