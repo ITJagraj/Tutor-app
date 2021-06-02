@@ -210,7 +210,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3008/api/categories/2",
+					"raw": "http://localhost:3008/api/categories/4",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -219,7 +219,7 @@
 					"path": [
 						"api",
 						"categories",
-						"2"
+						"4"
 					]
 				}
 			},
@@ -355,6 +355,50 @@
 			"response": []
 		},
 		{
+			"name": "showQuestionByPhrase",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/questions/search/Javascript",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"search",
+						"Javascript"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showQuestionByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3008/api/questions/search-category/Javascript",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3008",
+					"path": [
+						"api",
+						"questions",
+						"search-category",
+						"Javascript"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "updateQuestionInfo",
 			"request": {
 				"method": "PUT",
@@ -369,7 +413,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3008/api/questions/1/UNIX",
+					"raw": "http://localhost:3008/api/questions/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -378,8 +422,7 @@
 					"path": [
 						"api",
 						"questions",
-						"1",
-						"UNIX"
+						"1"
 					]
 				}
 			},
@@ -474,7 +517,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3008/api/answers",
+					"raw": "http://localhost:3008/api/answers/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -482,7 +525,8 @@
 					"port": "3008",
 					"path": [
 						"api",
-						"answers"
+						"answers",
+						"1"
 					]
 				}
 			},
