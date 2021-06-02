@@ -26,32 +26,57 @@ router.get('/', withAuth, (req, res) => {
     }
 });
 
-//GET /api/users/1
-router.get('/:id', withAuth, (req, res) => {
-    if (req.session.user_id === req.params.id) {
-        User.findOne({
-            where: {
-                id: req.params.id
-            },
-            attributes: {
-                include: ['createdAt',
-                'updatedAt'],
-                exclude: ['password'],
+//GET user by username
+router.get('/:username', /*withAuth,*/ (req, res) => {
+    console.log("test1");
+    User.findOne({
+        where: {
+            username: req.params.username
+        },
+        attributes: {
+            exclude: ['password'],
+        }
+    })
+        .then(dbUserData => {
+            console.log("test2");
+            if (!dbUserData) {
+                res.status(404).json({ message: 'No user found with this id' });
+                return;
             }
+            res.json(dbUserData);
         })
-            .then(dbUserData => {
-                if (!dbUserData) {
-                    res.status(404).json({ message: 'No user found with this id' });
-                    return;
-                }
-                res.json(dbUserData);
-            })
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            });
-    }
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
+
+//GET /api/users/1
+// router.get('/:id', withAuth, (req, res) => {
+//     if (req.session.user_id === req.params.id) {
+//         User.findOne({
+//             where: {
+//                 id: req.params.id
+//             },
+//             attributes: {
+//                 include: ['createdAt',
+//                 'updatedAt'],
+//                 exclude: ['password'],
+//             }
+//         })
+//             .then(dbUserData => {
+//                 if (!dbUserData) {
+//                     res.status(404).json({ message: 'No user found with this id' });
+//                     return;
+//                 }
+//                 res.json(dbUserData);
+//             })
+//             .catch(err => {
+//                 console.log(err);
+//                 res.status(500).json(err);
+//             });
+//     }
+// });
 
 //POST /api/users
 router.post('/', (req, res) => {
