@@ -4,10 +4,10 @@ const { Question, Answer, User,Category, CategoryQuestion } = require('../databa
 
 // needs some adjustments on login apis where to direct and use if user is "logged in or not"
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { loggedIn: req.session.loggedIn });
 });
 router.get('/post', (req, res) => {
-    res.render('dashboard');
+    res.render('dashboard', { loggedIn: req.session.loggedIn } );
 });
 router.get('/', (req, res) => {
     Question.findAll({
