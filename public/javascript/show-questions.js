@@ -3,7 +3,7 @@ async function searchFormHandler(event) {
 
     const searchText= document.querySelector('#search-text').value.toUpperCase();
 
-    const response= await fetch('/api/questions/search/:qt', {
+    const response= await fetch('/api/questions', {
         method: 'GET',
         body: JSON.stringify({results}),
         headers: {'Content-Type': 'application/json'}
@@ -12,7 +12,7 @@ async function searchFormHandler(event) {
     if (response.ok) {
         // ???? targeted location api
         
-        document.location.replace('/search.handlebars')
+        document.location.replace('/homepage')
     }
     else {
         console.log("pathway not working")
