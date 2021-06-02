@@ -42,7 +42,9 @@ router.get('/', (req, res) => {
 
         res.render('homepage', {
             questions,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            userName: req.session.username,
+            userId: req.session.user_id
         });
     })
     .catch(err => {
