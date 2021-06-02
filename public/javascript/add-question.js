@@ -6,7 +6,7 @@ async function newFormHandler(event) {
 
   const category_name = document.querySelector(' input[name="post-category"]').value;
 
-  const response = await fetch(`/api/questions/`, {
+  const response = await fetch(`/api/questions`, {
     method: 'POST',
     body: JSON.stringify({
       question_title,
