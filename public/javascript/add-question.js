@@ -5,7 +5,7 @@ async function newFormHandler(event) {
   const question_text = document.querySelector('input[name="post-summary"]').value;
   
   const category_name = document.querySelector(' input[name="post-category"]').value;
-
+  debugger
   const response = await fetch(`/api/questions`, {
     method: 'POST',
     body: JSON.stringify({
@@ -27,7 +27,4 @@ async function newFormHandler(event) {
   }
 }
 
-var el = document.querySelector('.new-post-form');
-if(el){
-  addEventListener('submit', newFormHandler);
-}
+document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);

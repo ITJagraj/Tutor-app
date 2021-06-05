@@ -7,8 +7,8 @@ const { Op } = require('sequelize');
 router.get('/login', (req, res) => {
     res.render('login', { loggedIn: req.session.loggedIn });
 });
-router.get('/post', (req, res) => {
-    res.render('dashboard', { loggedIn: req.session.loggedIn } );
+router.get('/add-question', (req, res) => {
+    res.render('addQuestionPage', { loggedIn: req.session.loggedIn } );
 });
 router.get('/', (req, res) => {
     Question.findAll({
