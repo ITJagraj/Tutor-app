@@ -99,7 +99,7 @@ a {
   textarea, input {
 	padding: .5%;
 	border-radius: 5px;
-	border: 1px solid #ccc;
+	border: 1px solid rgb(255, 0, 212);
   }
   
   textarea:focus, input:focus {
@@ -179,10 +179,22 @@ a {
   
   .post .title span {
 	font-style: italic;
-	font-size: 90%;
-	color: #7d7d7d;
+	font-size: 18px;
+	color: #543dbb;
+
+  }
+
+  p{
+	  font-size: 19px;
+	  color:rgb(255, 255, 255);
+	  font-weight: bolder;
   }
   
+  h3{
+	font-size: 23px;
+	color:rgb(141, 37, 119);
+	}
+
   .edit-link {
 	display: block;
 	margin: -1.5% 0 2% 0;
