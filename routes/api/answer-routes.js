@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
             })
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
-        console.log(err);
+        console.log("err occured");
         res.status(500).json(err);
 });
 });
