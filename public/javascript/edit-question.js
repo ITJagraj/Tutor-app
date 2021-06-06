@@ -1,14 +1,17 @@
-async function editFormHandler(event) {
+async function newFormHandler(event) {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="post-title"]').value.trim();
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-  const response = await fetch(`/api/posts/${id}`, {
+  const question_title = document.querySelector('input[name="question-title"]').value;
+  const question_text = document.querySelector('input[name="question-summary"]').value;
+  const category_name = document.querySelector(' input[name="question-category"]').value;
+  const question_id = document.getElementsByClassName("edit-question-form")[0].getAttribute("question_id");
+  
+  const response = await fetch(`/api/questions/${question_id}`, {
     method: 'PUT',
     body: JSON.stringify({
-      title
+      question_title,
+      question_text,
+      category_name    
     }),
     headers: {
       'Content-Type': 'application/json'
@@ -16,10 +19,10 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/dashboard/');
+    document.location.replace(`/question/${question_id}`);
   } else {
     alert(response.statusText);
   }
 }
 
-// document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
+document.getElementsByClassName("edit-question-form")[0].querySelector('.save-btn').addEventListener('click', newFormHandler);

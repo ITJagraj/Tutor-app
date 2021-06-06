@@ -2,9 +2,7 @@ async function answerFormHandler(event) {
   event.preventDefault();
 
   const answer_text = document.querySelector('textarea[name="answer-body"]').value.trim();
-  const question_id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
+  const question_id = document.getElementsByClassName("question")[0].getElementsByClassName("title question-info")[0].getElementsByTagName("p")[0].getAttribute("question_id");
 
   if (answer_text) {
     const response = await fetch('/api/answers', {
