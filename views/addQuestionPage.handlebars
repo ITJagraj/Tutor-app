@@ -1,4 +1,5 @@
 <section>
+  {{#if loggedIn}}
   <h2>Create New Question</h2>
   <form class="new-question-form">
     <div>
@@ -13,9 +14,13 @@
       <label for="question-category"> Category </label>
       <input id="question-category" name="question-category" />
     </div>
+    
     <button type="submit" class="create-btn">Create</button>
+    {{/if}}
     
   </form>
 </section>
 
+{{#if loggedIn}}
 <script src="/javascript/add-question.js"></script>
+{{/if}}
