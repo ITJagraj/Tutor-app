@@ -134,7 +134,7 @@ a {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0 1%;
+	padding: 10px 10px;
   }
   
   header h1 {
@@ -238,9 +238,14 @@ a {
 	  font-weight: bold;
   }
 
-  .answers-link {
+  .answers-link, .questions-link {
 	background-color: rgb(255, 0, 179, 0.19);
 	color:rgb(255, 0, 179);
+  }
+
+  .questions-link {
+	background-color: rgba(60, 223, 245, 0.19);
+	color:rgb(60, 32, 221);
   }
 
   .answer-info{

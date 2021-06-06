@@ -2,6 +2,7 @@ async function searchFormHandler(event) {
     event.preventDefault();
 
     const searchText= document.querySelector('#search-text').value;
+    if (searchText){
     const response = await fetch(`/api/questions/search/${searchText}`, {
         method: 'GET',
         headers: {
@@ -14,6 +15,7 @@ async function searchFormHandler(event) {
       } else {
         alert(response.statusText);
       }
+    }
 };
 
 

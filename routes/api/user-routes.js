@@ -4,7 +4,6 @@ const { User } = require('../../database/tables');
 
 //GET /api/users
 router.get('/', withAuth, (req, res) => {
-    if (req.session.user_id === req.params.id) {
         User.findAll({
             attributes: {
                 include: ['createdAt',
@@ -23,22 +22,19 @@ router.get('/', withAuth, (req, res) => {
                 console.log(err);
                 res.status(500).json(err);
             });
-    }
 });
 
 //GET user by username
-router.get('/:username', /*withAuth,*/ (req, res) => {
-    console.log("test1");
+router.get('/:username', withAuth, (req, res) => {
     User.findOne({
         where: {
-            username: req.params.username
+            username: req.session.username
         },
         attributes: {
             exclude: ['password'],
         }
     })
         .then(dbUserData => {
-            console.log("test2");
             if (!dbUserData) {
                 res.status(404).json({ message: 'No user found with this id' });
                 return;
@@ -120,7 +116,6 @@ router.post('/logout', (req, res) => {
 
 //PUT /api/users/1
 router.put('/:id', withAuth, (req, res) => {
-    if (req.session.user_id === req.params.id) {
 
         User.update(req.body, {
             individualHooks: true,
@@ -140,18 +135,15 @@ router.put('/:id', withAuth, (req, res) => {
                     req.session.loggedIn = false;
                     res.json(dbUserData);
                 });
-                res.json(dbUserData);
             })
             .catch(err => {
                 console.log(err);
                 res.status(500).json(err);
             });
-    }
 });
 
 // DELETE /api/users/1
 router.delete('/:id', withAuth, (req, res) => {
-    if (req.session.user_id === req.params.id) {
         User.destroy({
             where: {
                 id: req.params.id
@@ -168,7 +160,6 @@ router.delete('/:id', withAuth, (req, res) => {
                 console.log(err);
                 res.status(500).json(err);
             });
-    }
 });
 
 module.exports = router;

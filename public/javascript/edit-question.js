@@ -1,4 +1,4 @@
-async function newFormHandler(event) {
+async function editFormHandler(event) {
   event.preventDefault();
 
   const question_title = document.querySelector('input[name="question-title"]').value;
@@ -25,4 +25,4 @@ async function newFormHandler(event) {
   }
 }
 
-document.getElementsByClassName("edit-question-form")[0].querySelector('.save-btn').addEventListener('click', newFormHandler);
+document.getElementsByClassName("edit-question-form")[0].querySelector('.save-btn').addEventListener('click', editFormHandler);

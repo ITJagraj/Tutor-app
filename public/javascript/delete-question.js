@@ -1,4 +1,4 @@
-async function newFormHandler(event) {
+async function deleteFormHandler(event) {
   event.preventDefault();
 
   const question_id = document.getElementsByClassName("edit-question-form")[0].getAttribute("question_id");
@@ -20,4 +20,4 @@ async function newFormHandler(event) {
   }
 }
 
-document.getElementsByClassName("edit-question-form")[0].querySelector('.delete-btn').addEventListener('click', newFormHandler);
+document.getElementsByClassName("edit-question-form")[0].querySelector('.delete-btn').addEventListener('click', deleteFormHandler);

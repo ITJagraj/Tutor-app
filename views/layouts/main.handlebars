@@ -25,11 +25,11 @@
       <nav>
         {{#if loggedIn}}
         <div class="search-bar-right">
-          <a id="ask-id" href="/add-question">Ask</a>
-          <button id="logout" class="btn-no-style">Logout</button>
+          <li><a id="ask-id" href="/add-question"><button class="btn-no-style"> Ask </button></a></li>
+          <li><a id="user-name-loggedin" href="/user-page"><button class="btn-no-style">{{userName}}</button></a></li>
           <input type="text" id="search-text" placeholder="Search..">
           <button type="submit" id="search-id">Search</button>
-         
+          <li><button id="logout" class="btn-no-style">Logout</button></li>
         </div>
         {{else}}
         <a id="login" href="/login">Login</a>
