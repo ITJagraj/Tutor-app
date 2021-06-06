@@ -1,6 +1,6 @@
 <article class="question">
-      <div class="title">
-        <h3>{{user.username}}||<span>created {{format_date createdAt}}</span></h3>
-        <p>{{question_title}}</p>
+      <div class="title question-info">
+        <h3 question_user="{{user.username}}">{{user.username}}||<span>created {{format_date createdAt}}</span></h3>
+        <p question_id="{{id}}">{{question_title}}</p>
       </div>
     </article>

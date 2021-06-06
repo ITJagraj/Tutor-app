@@ -1,18 +1,20 @@
 async function deleteFormHandler(event) {
   event.preventDefault();
 
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-  const response = await fetch(`/api/posts/${id}`, {
+  const answer_id = this.parentNode.parentNode.getElementsByClassName("answer-text-box")[0].getAttribute("answer_id");
+  const question_id = document.getElementsByClassName("question")[0].getElementsByClassName("title question-info")[0].getElementsByTagName("p")[0].getAttribute("question_id");
+
+  const response = await fetch(`/api/answers/${answer_id}`, {
     method: 'DELETE'
   });
 
   if (response.ok) {
-    document.location.replace('/dashboard/');
+    document.location.replace(`/question/${question_id}`);
   } else {
     alert(response.statusText);
   }
 }
 
-// document.querySelector('.delete-post-btn').addEventListener('click', deleteFormHandler);
+  for (var i = 0; i<document.getElementsByClassName("answers")[0].getElementsByClassName("answer").length; i++){
+    document.getElementsByClassName("answers")[0].getElementsByClassName("answer")[i].querySelector("#delete-answer-btn").addEventListener("click", deleteFormHandler);
+  }

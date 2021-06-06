@@ -234,6 +234,17 @@ a {
   .answer-text-box {
 	  background-color: rgba(200, 243, 197, 0.18);
 	  color:rgb(255, 0, 179);
+	  font-size: 18px;
+	  font-weight: bold;
+  }
+
+  .answers-link {
+	background-color: rgb(255, 0, 179, 0.19);
+	color:rgb(255, 0, 179);
+  }
+
+  .answer-info{
+	font-weight: bold;
   }
   
   footer {

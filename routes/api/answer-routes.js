@@ -35,7 +35,8 @@ router.post('/', withAuth, (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
     Answer.destroy({
       where: {
-          id: req.params.id
+          id: req.params.id,
+          user_id: req.session.user_id
       }
     })
       .then(dbAnswerData => res.json(dbAnswerData))

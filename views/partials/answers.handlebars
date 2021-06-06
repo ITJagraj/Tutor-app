@@ -1,10 +1,10 @@
 <div class="answers">
   {{#each this}}
   <section class="answer">
-    <div class="meta">
-      {{user.username}} on {{format_date createdAt}}
+    <div class="answer-info">
+      {{user.username}} on {{format_date createdAt}} <i type="submit" class="fas fa-trash" id="delete-answer-btn"></i>
     </div>
-    <div class="answer-text-box"">
+    <div answer_id="{{id}}" class="answer-text-box">
       {{answer_text}}
     </div>
   </section>
