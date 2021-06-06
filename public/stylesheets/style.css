@@ -18,7 +18,7 @@
 	font-weight: bold;
 	
 }
-#post-id {
+#question-id {
 	font-family: sans-serif;
 	color: var(--primary);
 	font-size: 16px;
@@ -91,7 +91,7 @@ a {
 	background-color: #3486eb;
   }
   
-  .post-list {
+  .question-list {
 	margin: 0;
 	padding: 0;
   }
@@ -164,20 +164,20 @@ a {
 	color: #d0e5ff;
   }
   
-  .delete-post-btn {
+  .delete-question-btn {
 	background-color: #d41414;
   }
   
-  .delete-post-btn:hover {
+  .delete-question-btn:hover {
 	background-color: #ff643d;
   }
   
-  .post {
+  .question {
 	margin-bottom: 2%;
 	line-height: 150%;
   }
   
-  .post .title span {
+  .question .title span {
 	font-style: italic;
 	font-size: 18px;
 	color: #543dbb;
@@ -199,42 +199,41 @@ a {
 	display: block;
 	margin: -1.5% 0 2% 0;
   }
-
-
-  .upvote-btn {
-	background-color: #197d0f;
-	transition: background-color .1s;
-  }
   
-  .upvote-btn:hover {
-	background-color: #1f9c13;
-  }
-  
-  .comment-form {
+  .answer-form {
 	margin-bottom: 5%;
   }
   
-  .comment {
+  .answer {
 	padding: 1%;
 	margin-bottom: 1%;
   }
   
-  .comment:nth-child(odd) {
-	background-color: #fff5eb;
+  .answer {
+	background-color: rgb(255, 255, 255, 0.1);
   }
   
-  .comment .meta {
+  .answer .meta {
 	font-size: 90%;
 	margin-bottom: .5%;
 	opacity: .6;
   }
   
-  .new-post-form input {
+  .new-question-form input {
 	width: 300px;
   }
   
-  .edit-post-form {
+  .edit-question-form {
 	margin-bottom: 5%;
+  }
+
+  .question-text-box {
+	  background-color: rgba(131, 230, 255, 0.18);
+  }
+
+  .answer-text-box {
+	  background-color: rgba(200, 243, 197, 0.18);
+	  color:rgb(255, 0, 179);
   }
   
   footer {

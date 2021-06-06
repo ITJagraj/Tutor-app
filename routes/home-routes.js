@@ -7,9 +7,11 @@ const { Op } = require('sequelize');
 router.get('/login', (req, res) => {
     res.render('login', { loggedIn: req.session.loggedIn });
 });
+
 router.get('/add-question', (req, res) => {
     res.render('addQuestionPage', { loggedIn: req.session.loggedIn } );
 });
+
 router.get('/', (req, res) => {
     Question.findAll({
         attributes: [
@@ -129,7 +131,13 @@ router.get('/question/:id', (req, res) => {
             },
             {
                 model: Answer,
-                attributes: ['id','user_id','question_id','answer_text'],
+                attributes: ['id','user_id','question_id','answer_text','createdAt'],
+                include:[
+                    {
+                        model: User,
+                        attributes: ['id','username'],
+                    }
+                ]
             }
         ]
     })
@@ -141,9 +149,10 @@ router.get('/question/:id', (req, res) => {
 
         const question = dbQuestionData.get({plain: true});
 
-        res.render('single-post', {
+        res.render('showQuestionPage', {
             question,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            userId: req.session.user_id
         });
     })
     .catch(err => {

@@ -26,4 +26,4 @@ async function answerFormHandler(event) {
   }
 }
 
-document.querySelector('.comment-form').addEventListener('submit', answerFormHandler);
+document.querySelector('.answer-form').addEventListener('submit', answerFormHandler);

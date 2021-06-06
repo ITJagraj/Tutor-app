@@ -1,35 +1,21 @@
 <section>
   <h2>Create New Post</h2>
-  <form class="new-post-form">
+  <form class="new-question-form">
     <div>
-      <label for="post-title">Title</label>
-      <input type="text" id="post-title" name="post-title" />
+      <label for="question-title">Title</label>
+      <input type="text" id="question-title" name="question-title" />
     </div>
     <div>
-      <label for="post-summary">Summary</label>
-      <input id="post-summary" name="post-summary" />
+      <label for="question-summary">Summary</label>
+      <input id="question-summary" name="question-summary" />
     </div>
     <div>
-      <label for="post-category"> Category </label>
-      <input id="post-category" name="post-category" />
+      <label for="question-category"> Category </label>
+      <input id="question-category" name="question-category" />
     </div>
     <button type="submit" class="btn">Create</button>
     
   </form>
 </section>
-
-{{!-- {{#if posts.length}}
-<section>
-  <h2>Your Posts</h2>
-  <ol>
-    {{#each posts as |post|}}
-    <li>
-      {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}} --}}
 
 <script src="/javascript/add-question.js"></script>

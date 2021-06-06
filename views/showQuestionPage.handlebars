@@ -1,7 +1,10 @@
 {{> question-info question}}
+<p class="question-text-box">{{question.question_text}}</p>
+
+{{> answers question.answers}}
 
 {{#if loggedIn}}
-<form class="comment-form">
+<form class="answer-form">
   <div>
     <textarea name="answer-body"></textarea>
   </div>
@@ -13,9 +16,6 @@
 </form>
 {{/if}}
 
-{{> answers post.comments}}
-
 {{#if loggedIn}}
 <script src="/javascript/add-answer.js"></script>
-{{!-- <script src="/javascript/upvote.js"></script> --}}
 {{/if}}

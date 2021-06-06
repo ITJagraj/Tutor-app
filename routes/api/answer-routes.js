@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const {Answer} = require('../../database/tables');
+const {Answer, User} = require('../../database/tables');
 
 //gets all answers
 router.get('/:id', (req, res) => {
@@ -19,7 +19,7 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     Answer.create({
       answer_text: req.body.answer_text,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
       question_id: req.body.question_id
     })
       .then(dbAnswerData => res.json(dbAnswerData))
