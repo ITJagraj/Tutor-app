@@ -121,7 +121,6 @@ router.post('/', withAuth, (req, res) => {
         question_title: req.body.question_title,
         question_text: req.body.question_text,
         user_id: req.session.user_id,
-        //category_id: req.body.category_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {

@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const {Answer, User} = require('../../database/tables');
+const {Answer} = require('../../database/tables');
 
 //gets all answers
 router.get('/:id', (req, res) => {

@@ -23,6 +23,7 @@ class User extends Model {
         type: DataTypes.STRING,
         isAlphanumeric: true,
         allowNull: false,
+        unique: true,
         validate: {
             len: [4],
           }
@@ -49,6 +50,14 @@ class User extends Model {
         allowNull: true,
         validate: {
           len: [3],
+        }
+      },
+      organization_id: {
+        type: DataTypes.STRING(64),
+        isAlpha: true,
+        allowNull: true,
+        validate: {
+          len: [3,25],
         }
       },
       password: {

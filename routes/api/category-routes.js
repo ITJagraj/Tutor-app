@@ -18,10 +18,10 @@ router.get('/', withAuth, (req, res) => {
 });
 
 //find one category for a question
-router.get('/:id', withAuth, (req, res) => {
+router.get('/:category_name', withAuth, (req, res) => {
     Category.findOne({
       where: {
-          id: req.params.id
+        category_name: reg.params.category_name
       }
     })
       .then(dbCategoryData => res.json(dbCategoryData))
@@ -44,10 +44,10 @@ router.post('/', withAuth, (req, res) => {
 });
 
 //Only developers should be able to delete categories from the tutor app.
-router.delete('/:id', withAuth, (req, res) => {
+router.delete('/:category_name', withAuth, (req, res) => {
   Category.destroy({
    where: {
-     id: req.params.id
+    category_name: req.params.category_name
    }
   })
     .then(dbCategoryData => res.json(dbCategoryData))
