@@ -17,7 +17,7 @@ async function loginFormHandler(event) {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      alert("Username or Password not recognized");
     }
   }
 }
@@ -47,7 +47,7 @@ async function signupFormHandler(event) {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert(response.statusText);
+      alert("Please enter valid signup credentials: \n Username must be greater than 3 characters \n Password must be more than 8 characters");
     }
   }
 }

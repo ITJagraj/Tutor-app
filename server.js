@@ -4,8 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./routes/");
 const helpers= require('./utils/helpers');
-const nodemailer = require("nodemailer");
-const sendmail = require("sendmail")
+
 
 
 const app = express();
