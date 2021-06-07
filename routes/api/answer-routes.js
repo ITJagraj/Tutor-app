@@ -32,7 +32,7 @@ router.post('/', withAuth, (req, res) => {
       .then(dbAnswerData => {
       
           var transporter = nodemailer.createTransport({
-            service: 'gmail',
+            service: 'yahoo',
             auth:{
               user: 'noreply.coeusshare@yahoo.com',
               pass: 'Tm@23A9$Xy6w'
