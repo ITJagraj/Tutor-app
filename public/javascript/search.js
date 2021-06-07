@@ -13,7 +13,7 @@ async function searchFormHandler(event) {
       if (response.ok) {
         document.location.replace(`/foundQuestions/${searchText}`);
       } else {
-        alert(response.statusText);
+        alert("No matching search queries");
       }
     }
 };

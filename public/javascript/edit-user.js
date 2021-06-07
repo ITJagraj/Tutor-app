@@ -24,7 +24,7 @@ async function editFormHandler(event) {
     if (response.ok) {
       document.getElementById('logout').click();
     } else {
-      alert(response.statusText);
+      alert("Please enter valid credentials and do not leave any fields blank.");
     }
   }
 }
