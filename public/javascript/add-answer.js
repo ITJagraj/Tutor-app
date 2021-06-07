@@ -5,13 +5,15 @@ async function answerFormHandler(event) {
   const question_id = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
   ];
+  // const user_id= req..user_id;
 
   if (answer_text) {
     const response = await fetch('/api/answers', {
       method: 'POST',
       body: JSON.stringify({
         question_id,
-        answer_text
+        answer_text,
+        // user_id
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -19,11 +21,13 @@ async function answerFormHandler(event) {
     });
 
     if (response.ok) {
+      // alert("ok");
       document.location.reload();
+      
     } else {
       alert(response.statusText);
     }
   }
 }
 
-document.querySelector('.comment-form').addEventListener('submit', answerFormHandler);
+document.querySelector('.answer-form').addEventListener('submit', answerFormHandler);
