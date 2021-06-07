@@ -19,8 +19,14 @@ router.get('/:id', (req, res) => {
 router.post('/', withAuth, (req, res) => {
     Answer.create({
       answer_text: req.body.answer_text,
-      user_id: req.body.user_id,
-      question_id: req.body.question_id
+      user_id: req.session.user_id,
+      question_id: req.body.question_id,
+      include: [
+        {
+            model: User,
+            attributes: ['id','username','first_name','last_name'],
+        },
+    ]
     })
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {
@@ -35,7 +41,8 @@ router.post('/', withAuth, (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
     Answer.destroy({
       where: {
-          id: req.params.id
+          id: req.params.id,
+          user_id: req.session.user_id
       }
     })
       .then(dbAnswerData => res.json(dbAnswerData))

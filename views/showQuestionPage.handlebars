@@ -1,0 +1,22 @@
+{{> question-info question}}
+<p class="question-text-box">{{question.question_text}} <a href="/edit-question/{{question.id}}"> <i type="submit" class="fas fa-edit" id="edit-question-btn"></i> </a></p> 
+
+{{> answers question.answers}}
+
+{{#if loggedIn}}
+<form class="answer-form">
+  <div>
+    <textarea name="answer-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add answer</button>
+    
+  </div>
+</form>
+{{/if}}
+
+{{#if loggedIn}}
+<script src="/javascript/add-answer.js"></script>
+<script src="/javascript/delete-answer.js"></script>
+{{/if}}

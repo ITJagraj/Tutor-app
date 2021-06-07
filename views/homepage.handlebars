@@ -1,7 +1,9 @@
-<ol class="post-list">
+<ol class="question-list">
   {{#each questions as |question|}}
   <li>
     {{> question-info question }}
+    <a class="answers-link" href="/question/{{question.id}}">Answers</a>
+    <br></br>
   </li>
   {{/each}}
 </ol>

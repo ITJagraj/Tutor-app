@@ -1,0 +1,26 @@
+<section>
+  {{#if loggedIn}}
+  <h2>Create New Question</h2>
+  <form class="new-question-form">
+    <div>
+      <label for="question-title">Title</label>
+      <input type="text" id="question-title" name="question-title" />
+    </div>
+    <div>
+      <label for="question-summary">Summary</label>
+      <input id="question-summary" name="question-summary" />
+    </div>
+    <div>
+      <label for="question-category"> Category </label>
+      <input id="question-category" name="question-category" />
+    </div>
+    
+    <button type="submit" class="create-btn">Create</button>
+    {{/if}}
+    
+  </form>
+</section>
+
+{{#if loggedIn}}
+<script src="/javascript/add-question.js"></script>
+{{/if}}

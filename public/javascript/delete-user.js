@@ -1,25 +1,20 @@
-async function editFormHandler(event) {
+async function deleteFormHandler(event) {
   event.preventDefault();
 
-  const title = document.querySelector('input[name="post-title"]').value.trim();
-  const id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-  ];
-  const response = await fetch(`/api/posts/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify({
-      title
-    }),
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  });
+  const id = document.querySelector(".edit-user-form").getAttribute("user_id");
+  
+    const response = await fetch(`/api/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
 
-  if (response.ok) {
-    document.location.replace('/dashboard/');
-  } else {
-    alert(response.statusText);
-  }
+    if (response.ok) {
+      document.getElementById('logout').click();
+    } else {
+      alert(response.statusText);
+    }
 }
 
-// document.querySelector('.edit-post-form').addEventListener('submit', editFormHandler);
+document.getElementsByClassName("edit-user-form")[0].querySelector('.delete-btn').addEventListener('click', deleteFormHandler);

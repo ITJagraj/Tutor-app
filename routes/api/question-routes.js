@@ -121,7 +121,6 @@ router.post('/', withAuth, (req, res) => {
         question_title: req.body.question_title,
         question_text: req.body.question_text,
         user_id: req.session.user_id,
-        //category_id: req.body.category_id
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
@@ -139,7 +138,8 @@ router.put('/:id', withAuth, (req, res) => {
         },
         { 
             where: {
-            id: req.params.id
+            id: req.params.id,
+            user_id: req.session.user_id
         }}
     )
     .then(dbQuestionData => res.json(dbQuestionData))
@@ -153,7 +153,8 @@ router.put('/:id', withAuth, (req, res) => {
 router.put('/:id/:category_name', withAuth, (req, res) => {
     Category.findOne({
             where: {
-                category_name: req.params.category_name
+                category_name: req.params.category_name,
+                user_id: req.session.id
             },
           })
     .then(dbCategoryData => {
@@ -174,7 +175,8 @@ router.put('/:id/:category_name', withAuth, (req, res) => {
 router.delete('/:id/:category_name', withAuth, (req, res) => {
     Category.findOne({
         where: {
-            category_name: req.params.category_name
+            category_name: req.params.category_name,
+            user_id: req.session.id
         },
       })
     .then(dbCategoryData => {
@@ -196,12 +198,9 @@ router.delete('/:id/:category_name', withAuth, (req, res) => {
 router.delete('/:id', withAuth, (req, res) => {
     Question.destroy({
         where: {
-            id: req.params.id
+            id: req.params.id,
+            user_id: req.session.user_id
         },
-        question_title: req.body.question_title,
-        question_text: req.body.question_text,
-        user_id: req.body.user_id,
-        category_name: req.body.category_name,
     })
     .then(dbQuestionData => res.json(dbQuestionData))
     .catch(err => {
