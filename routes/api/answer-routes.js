@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../auth');
-const {Answer} = require('../../database/tables');
+const {Answer, User} = require('../../database/tables');
+var nodemailer = require("nodemailer");
 
 //gets all answers
 router.get('/:id', (req, res) => {
@@ -24,11 +25,33 @@ router.post('/', withAuth, (req, res) => {
       include: [
         {
             model: User,
-            attributes: ['id','username','first_name','last_name'],
-        },
+            attributes: ['id','username','first_name','last_name','email']
+        }
     ]
     })
-      .then(dbAnswerData => res.json(dbAnswerData))
+      .then(dbAnswerData => {
+      
+          var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth:{
+              user: 'noreply.coeusshare@yahoo.com',
+              pass: 'Tm@23A9$Xy6w'
+            }
+          });
+          console.log(`${req.body.destination_email}`)
+          var mailOptions = {
+            from: 'noreply.coeusshare@yahoo.com',
+            to: `${req.body.destination_email}`,
+            subject: `Someone has posted an answer to your question.` ,
+            text: `Check it out your answer at https://coeus-share.herokuapp.com/user-page`
+          }
+
+          transporter.sendMail(mailOptions, function(err, info)
+          {if (err) {console.log(err);}
+          else { console.log('Email sent: ' + info.response)}});
+
+        res.json(dbAnswerData)
+      })
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
