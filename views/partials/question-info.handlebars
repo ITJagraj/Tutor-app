@@ -2,5 +2,11 @@
       <div class="title question-info">
         <h3 question_user="{{user.username}}">{{user.username}}||<span>created {{format_date createdAt}}</span></h3>
         <p question_id="{{id}}">{{question_title}}</p>
+        <p id="hidden-destination-email" >{{user.email}}</p>
+        <style>
+          #hidden-destination-email {
+            display: none;
+          }
+        </style>
       </div>
     </article>

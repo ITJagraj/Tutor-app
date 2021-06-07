@@ -2,7 +2,7 @@
   {{#if loggedIn}}
   <h2>{{userName}}</h2>
 
-  <h3>Questions</h2>
+  <h3>Questions</h3>
   <ol class="question-list">
   {{#each userInfo.questions as |question|}}
   <li>
@@ -14,7 +14,7 @@
 </ol>
 
 <div class="answers">
-  <h3>Answers</h2>
+  <h3>Answers</h3>
   {{#each userInfo.answers as |answer|}}
   <section class="answer">
     <div class="answer-info">
@@ -29,6 +29,7 @@
 </div>
 
   <form user_id={{userInfo.id}} question_id="{{question.id}}" class="edit-user-form">
+    <h3>Edit Profile Info</h3>
     <div>
       <label for="first-name">First Name</label>
       <input type="text" id="first-name" name="first-name" value="{{userInfo.first_name}}"/> 
@@ -36,6 +37,10 @@
     <div>
       <label for="last-name">Last Name</label>
       <input id="last-name" name="last-name" value="{{userInfo.last_name}}"/>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" value="{{userInfo.email}}"/>
     </div>
     <div>
       <label for="password">Password</label>

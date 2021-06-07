@@ -224,14 +224,10 @@ router.get('/question/:id', (req, res) => {
         include: [
             {
                 model: User,
-                attributes: ['id','username','first_name','last_name'],
+                attributes: ['id','username','first_name','last_name','email'],
             },
             { 
                 model: Category, as: "question_categories" 
-            },
-            {
-                model: User,
-                attributes: ['id','username','first_name','last_name'],
             },
             {
                 model: Answer,

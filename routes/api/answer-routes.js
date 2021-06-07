@@ -20,7 +20,13 @@ router.post('/', withAuth, (req, res) => {
     Answer.create({
       answer_text: req.body.answer_text,
       user_id: req.session.user_id,
-      question_id: req.body.question_id
+      question_id: req.body.question_id,
+      include: [
+        {
+            model: User,
+            attributes: ['id','username','first_name','last_name'],
+        },
+    ]
     })
       .then(dbAnswerData => res.json(dbAnswerData))
       .catch(err => {

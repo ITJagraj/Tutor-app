@@ -59,6 +59,14 @@ class User extends Model {
         validate: {
           len: [8,15],
         }
+      },
+      email: {
+        type: DataTypes.STRING(64),
+        isEmail: true,
+        allowNull: true,
+        validate: {
+          len: [3,45]
+        }
       }
     },
     {
